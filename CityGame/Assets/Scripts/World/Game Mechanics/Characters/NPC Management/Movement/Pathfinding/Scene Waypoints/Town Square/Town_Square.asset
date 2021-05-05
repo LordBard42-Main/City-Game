@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b076d26fc406cf44bb6d55679bc42b1f, type: 3}
+  m_Name: Town_Square
+  m_EditorClassIdentifier: 
+  numberOfNodes: 11
+  nodes:
+  - {fileID: 11400000, guid: d4c73f8a1318a4f4d8e159b869cf9250, type: 2}
+  - {fileID: 11400000, guid: 5c1f2ae7ba411074f9992c29952186d6, type: 2}
+  - {fileID: 11400000, guid: c0867a7840492e14da6fca0b3147b60b, type: 2}
+  - {fileID: 11400000, guid: d9b15a1253cb2a941af6aaec10173393, type: 2}
+  - {fileID: 11400000, guid: ff44a32f91eeee543905628a72e6ee79, type: 2}
+  - {fileID: 11400000, guid: a87044e91e0977f4fa263cc015aab73d, type: 2}
+  - {fileID: 11400000, guid: 96a0867a7b46333468bfdf334542df3e, type: 2}
+  - {fileID: 11400000, guid: ec1832609d05b4345a0762c2e80d4eac, type: 2}
+  - {fileID: 11400000, guid: 031dda23158912a4c827f38c33012ad5, type: 2}
+  - {fileID: 11400000, guid: f5bcc6fe2b932da4ca1fcf01b62f8fb1, type: 2}
+  - {fileID: 11400000, guid: ae60be60681469e41b7624d4d53d7236, type: 2}

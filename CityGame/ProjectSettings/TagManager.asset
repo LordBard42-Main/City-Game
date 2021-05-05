@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - NPC
+  - DontDestroy
+  - Bench Parent
+  - SpringTrees Parent
+  - StreetLight Parent
+  - Grid Parent
+  - ItemGuide Parent
+  - GroundTileMap
+  - TileMap Parent
+  - TrashCans Parent
+  - Stove Parent
+  - Tilemap
+  - Trees
+  - ItemCardsSellParent
+  - Waypoint_Parent
+  - Waypoint
+  - Door_Trigger
+  - Menu_Trigger
+  - Shop_Trigger
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Benches
+  - Door
+  - Obstacle
+  - Consumables
+  - Ground
+  - NPC
+  - Building
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Ground
+    uniqueID: 1461155467
+    locked: 0
+  - name: Walls_Bot
+    uniqueID: 56801233
+    locked: 0
+  - name: FloorObjects
+    uniqueID: 3204268753
+    locked: 0
+  - name: Objects
+    uniqueID: 1188804445
+    locked: 0
+  - name: Walls_Top
+    uniqueID: 1835010161
+    locked: 0
+  - name: UI
+    uniqueID: 4282672135
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2118701871
+    locked: 0
