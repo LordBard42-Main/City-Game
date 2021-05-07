@@ -64,6 +64,7 @@ public class NPCController : CharacterController
     private void Update()
     {
         stateMachine.Tick();
+        //Debug.Log(employeeController.CurrentProject.CityProject);
     }
 
     public void CheckSchedule(TimeStamp currentTime)
@@ -149,7 +150,7 @@ public class NPCController : CharacterController
         At(to: waitingOnJobState, from: travelingState, condition: FoundJob());
 
         At(to: loiteringState, from: travelingState, condition: DestinationAvailable());
-        At(to: travelingState, from: loiteringState, condition: DestinationReached());
+        //At(to: travelingState, from: loiteringState, condition: DestinationReached());
 
         At(to: travelingState, from: talkingState, condition: StartDialogue());
         At(to: loiteringState, from: talkingState, condition: StartDialogue());
@@ -166,9 +167,10 @@ public class NPCController : CharacterController
         Func<bool> StartDialogue() => () => dialogueController.AttemptDialogue();
         Func<bool> StartPause() => () => talkingState.ReachedDialogueEnd;
         Func<bool> EndPause() => () => pauseState.CurrentTime >= pauseState.WAITTIME;
-        Func<bool> IsWaitingOnJob() => () => employeeController.IsEmployed && movement.CoordinateDestination == default(Vector2) && movement.SceneDestination == default(Scenes)
-                                            && currentScene == EmployeeController.WorkSpace.Scene && employeeController.CurrentProject == null;
-        Func<bool> FoundJob() => () => employeeController.IsEmployed && employeeController.CurrentProject != null;
+        Func<bool> IsWaitingOnJob() => () => employeeController.IsEmployed 
+                                             && movement.CoordinateDestination == default(Vector2) && movement.SceneDestination == default(Scenes) // Is NPC Moving
+                                             && currentScene == EmployeeController.WorkSpace.Scene && employeeController.CurrentProject.CityProject == null; // Is NPC in workspace and is urrent projects null
+        Func<bool> FoundJob() => () => employeeController.IsEmployed && employeeController.CurrentProject.CityProject != null;
 
         stateMachine.SetState(loiteringState);
     }

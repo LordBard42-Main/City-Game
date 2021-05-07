@@ -145,10 +145,11 @@ MonoBehaviour:
   manager: {fileID: 0}
   assistant: {fileID: 0}
   funds: 0
-  allProjects: []
   smallProjects: []
   mediumProjects: []
   largeProjects: []
+  cityProjectSpaces: []
+  projectQueue: []
 --- !u!1 &373786229089607862
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,7 +413,11 @@ MonoBehaviour:
   isEmployed: 0
   workspace: {fileID: 0}
   employeeType: 0
-  currentProject: {fileID: 0}
+  currentProject:
+    scene: 0
+    location: {x: 0, y: 0}
+    projectSpace: {fileID: 0}
+    cityProject: {fileID: 0}
 --- !u!114 &4096663471368910976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1945,6 +1950,7 @@ MonoBehaviour:
       hours: 0
       minutes: 0
       seconds: 0
+  currentActivity: {fileID: 0}
 --- !u!114 &5591326924266325582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6595,7 +6601,11 @@ MonoBehaviour:
   isEmployed: 0
   workspace: {fileID: 0}
   employeeType: 0
-  currentProject: {fileID: 0}
+  currentProject:
+    scene: 0
+    location: {x: 0, y: 0}
+    projectSpace: {fileID: 0}
+    cityProject: {fileID: 0}
 --- !u!114 &4180949985810976542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8443,20 +8453,26 @@ MonoBehaviour:
   id: 0
   scene: 3
   pathAndFileName_WorkspaceInfo:
-    path: 
-    fileName: 
+    path: /Workspaces
+    fileName: /libraryInformation.json
   workspaceInformation:
     head: 0
     assistant: 0
   manager: {fileID: 0}
   assistant: {fileID: 0}
   funds: 0
-  allProjects: []
   smallProjects:
   - {fileID: 0}
   mediumProjects:
   - {fileID: 11400000, guid: dc0583133eb2bfb4c8dd5fb04dcb7d9b, type: 2}
   largeProjects: []
+  cityProjectSpaces:
+  - scene: 3
+    location: {x: 3, y: 13}
+    projectSpace: {fileID: 8131540505916326618, guid: 0b53e90a4b029494d84432adff96008e,
+      type: 3}
+    cityProject: {fileID: 0}
+  projectQueue: []
 --- !u!1 &9136674006226399640
 GameObject:
   m_ObjectHideFlags: 0

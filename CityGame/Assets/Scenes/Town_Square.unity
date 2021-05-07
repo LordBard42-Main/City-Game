@@ -669,25 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4df758fee7ab549a83d8a3962c0d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  projectSpaceDetails:
-    coordinates: {x: 0, y: 0}
-    id: 0
-    spaceSize: 0
-    currentBuild: {fileID: 0}
-    isUnderConstruction: 0
-    isSpaceOccupied: 0
-    currentBuildProgress: 0
-    constructionStartDate:
-      day: 0
-      hours: 0
-      minutes: 0
-      seconds: 0
-    ConstructionFinishDate:
-      day: 0
-      hours: 0
-      minutes: 0
-      seconds: 0
   progresSlider: {fileID: 199350980}
 --- !u!1001 &605963469
 PrefabInstance:
@@ -2016,16 +1997,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 12.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7903429897055146738, guid: 8de8cfbdcd55e814599fafaf7652246a,
-        type: 3}
-      propertyPath: pathAndFileName_WorkspaceInfo.path
-      value: /Workspaces
-      objectReference: {fileID: 0}
-    - target: {fileID: 7903429897055146738, guid: 8de8cfbdcd55e814599fafaf7652246a,
-        type: 3}
-      propertyPath: pathAndFileName_WorkspaceInfo.fileName
-      value: /libraryInformation.json
-      objectReference: {fileID: 0}
     - target: {fileID: 8104614640504701669, guid: 8de8cfbdcd55e814599fafaf7652246a,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2109,25 +2080,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4df758fee7ab549a83d8a3962c0d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  projectSpaceDetails:
-    coordinates: {x: 0, y: 0}
-    id: 1
-    spaceSize: 0
-    currentBuild: {fileID: 0}
-    isUnderConstruction: 0
-    isSpaceOccupied: 0
-    currentBuildProgress: 0
-    constructionStartDate:
-      day: 0
-      hours: 0
-      minutes: 0
-      seconds: 0
-    ConstructionFinishDate:
-      day: 0
-      hours: 0
-      minutes: 0
-      seconds: 0
   progresSlider: {fileID: 0}
 --- !u!212 &1515938416
 SpriteRenderer:

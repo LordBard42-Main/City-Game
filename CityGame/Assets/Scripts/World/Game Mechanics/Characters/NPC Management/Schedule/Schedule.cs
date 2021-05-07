@@ -21,13 +21,13 @@ public class Schedule : MonoBehaviour
 
     private void Awake()
     {
-        activityManager = ActivityManager.instance;
 
         scheduleInformation.DeserializeInformation(pathAndFileName_ScheduleInfo);
     }
 
     private IEnumerator Start()
     {
+        activityManager = ActivityManager.instance;
         characterController = GetComponent<CharacterController>();
 
         yield return new WaitForSeconds(.1f);
@@ -46,6 +46,7 @@ public class Schedule : MonoBehaviour
             if (currentTime.IsSameTime(currentSchedule.Peek().StartTime))
             {
                 currentEvent = CurrentSchedule.Pop();
+                Debug.Log(activityManager);
                 currentActivity = activityManager.GetActivityByEventTypes(currentEvent.GetEventType());
 
                 return true;

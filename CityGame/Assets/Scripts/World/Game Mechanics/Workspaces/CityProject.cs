@@ -17,12 +17,6 @@ public class CityProject : ScriptableObject
     [Header("Project Constraints")]
     [SerializeField] [Range(0, 20)] private int skillLevelRequired;
 
-    [Header("Project Details")]
-    [SerializeField] private Vector2 coordinateLocation;
-    [SerializeField] private Scenes sceneLocation;
-
     public Workspace_ID Workspace { get => workspace; private set => workspace = value; }
     public int SkillLevelRequired { get => skillLevelRequired; private set => skillLevelRequired = value; }
-    public Vector2 CoordinateLocation { get => coordinateLocation; private set => coordinateLocation = value; }
-    public Scenes SceneLocation { get => sceneLocation; private set => sceneLocation = value; }
 }

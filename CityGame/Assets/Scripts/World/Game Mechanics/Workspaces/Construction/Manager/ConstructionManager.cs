@@ -24,7 +24,6 @@ public class ConstructionManager : Workspace
 
         id = Workspace_ID.Construction;
 
-        allProjects = Resources.FindObjectsOfTypeAll<ConstructionProject>().Cast<CityProject>().ToList();
         smallProjects = Resources.FindObjectsOfTypeAll<SmallConstructionProject>().Cast<CityProject>().ToList();
         mediumProjects = Resources.FindObjectsOfTypeAll<MediumConstructionProject>().Cast<CityProject>().ToList();
         largeProjects = Resources.FindObjectsOfTypeAll<LargeConstructionProject>().Cast<CityProject>().ToList();

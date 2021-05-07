@@ -23,13 +23,16 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
     [Header("Finaces")]
     [SerializeField] protected float funds;
 
-    [Header("Project Queues")]
-    [SerializeField] protected List<CityProject> allProjects;
+    [Header("City Projects")]
     [SerializeField] protected List<CityProject> smallProjects;
     [SerializeField] protected List<CityProject> mediumProjects;
     [SerializeField] protected List<CityProject> largeProjects;
 
-    protected Queue<CityProject> projectQueue = new Queue<CityProject>();
+    [Header("City Project Spaces")]
+    [SerializeField] protected List<CityProjectSpaceRefrence> cityProjectSpaces;
+
+    [Header("Project Queue")]
+    [SerializeField] protected List<CityProjectSpaceRefrence> projectQueue;
 
     //Events
     public delegate void ProjectQueueUpdated();
@@ -47,7 +50,8 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
     private void Start()
     {
         InitializeWorkspace();
-        ProjectQueue.Enqueue(mediumProjects[0]);
+        cityProjectSpaces[0].CityProject = mediumProjects[0];
+        projectQueue.Add(cityProjectSpaces[0]);
         Debug.Log(ProjectQueue.Count);
 
     }
@@ -112,7 +116,6 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
         switch (size)
         {
             case ProjectSize_IDs.All:
-                searchProjects = allProjects;
                 break;
             case ProjectSize_IDs.Small:
                 searchProjects = smallProjects;
@@ -151,5 +154,5 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
 
     }
     public Scenes Scene { get => scene; private set => scene = value; }
-    public Queue<CityProject> ProjectQueue { get => projectQueue; protected set => projectQueue = value; }
+    public List<CityProjectSpaceRefrence> ProjectQueue { get => projectQueue; protected set => projectQueue = value; }
 }

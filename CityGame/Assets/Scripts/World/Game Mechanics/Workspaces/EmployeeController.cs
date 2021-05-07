@@ -14,7 +14,7 @@ public class EmployeeController : MonoBehaviour
     private SkillController skillController;
 
 
-    [SerializeField] CityProject currentProject;
+    [SerializeField] CityProjectSpaceRefrence currentProject;
 
     private void Awake()
     {
@@ -30,14 +30,16 @@ public class EmployeeController : MonoBehaviour
 
     public bool GetNewProject()
     {
-        foreach (CityProject project in workspace.ProjectQueue)
+        foreach (CityProjectSpaceRefrence projectReference in workspace.ProjectQueue)
         {
-            if (project.SkillLevelRequired <= skillController.GetSkill(Skills.LibrarySkill).Level)
+            if (projectReference.CityProject.SkillLevelRequired <= skillController.GetSkill(Skills.LibrarySkill).Level)
             {
-                CurrentProject = project;
+                Debug.Log("Project Set");
+                currentProject = projectReference;
                 return true;
             }
         }
+        Debug.Log("Project Not Set");
         return false;
     }
 
@@ -52,5 +54,5 @@ public class EmployeeController : MonoBehaviour
     public Workspace WorkSpace { get => workspace; set => workspace = value; }
     public Employee_Type EmployeeType { get => employeeType; set => employeeType = value; }
     public bool IsEmployed { get => isEmployed; set => isEmployed = value; }
-    public CityProject CurrentProject { get => currentProject; set => currentProject = value; }
+    public CityProjectSpaceRefrence CurrentProject { get => currentProject; set => currentProject = value; }
 }

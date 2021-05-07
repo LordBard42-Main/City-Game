@@ -34,13 +34,13 @@ public class NPC_State_WaitingForJob : IState
 
     public void ProjectQueueUpdated()
     {
-        if (employeeController.CurrentProject == null)
+        if (employeeController.CurrentProject.CityProject == null)
         {
             var wasUpdated = employeeController.GetNewProject();
 
             if(wasUpdated)
             {
-                controller.MovementHandler.SetDestination(employeeController.CurrentProject.CoordinateLocation, employeeController.CurrentProject.SceneLocation);
+                controller.MovementHandler.SetDestination(employeeController.CurrentProject.Location, employeeController.CurrentProject.Scene);
             }
             
         }
