@@ -32,7 +32,7 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
     [SerializeField] protected List<CityProjectSpaceRefrence> cityProjectSpaces;
 
     [Header("Project Queue")]
-    [SerializeField] protected List<CityProjectSpaceRefrence> projectQueue;
+    protected List<CityProjectSpaceRefrence> projectQueue = new List<CityProjectSpaceRefrence>();
 
     //Events
     public delegate void ProjectQueueUpdated();
@@ -43,16 +43,14 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
     {
         workspaceInformation.DeserializeInformation(pathAndFileName_WorkspaceInfo);
 
-
-
+        projectQueue = workspaceInformation.ProjectQueue;
 
     }
     private void Start()
     {
         InitializeWorkspace();
-        cityProjectSpaces[0].CityProject = mediumProjects[0];
-        projectQueue.Add(cityProjectSpaces[0]);
-        Debug.Log(ProjectQueue.Count);
+
+
 
     }
 
@@ -131,6 +129,15 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
         }
 
         return searchProjects;
+    }
+
+    public void AddCityProjectToQueue(CityProjectSpaceRefrence cityProjectRefrence, CityProject cityProject)
+    {
+        cityProjectRefrence.CityProject = cityProject;
+        projectQueue.Add(cityProjectRefrence);
+
+        if (OnProjectQueueUpdated != null)
+            OnProjectQueueUpdated.Invoke();
     }
 
     public void InitializeWorkspace()

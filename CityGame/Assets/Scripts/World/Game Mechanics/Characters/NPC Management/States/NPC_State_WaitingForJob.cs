@@ -29,6 +29,7 @@ public class NPC_State_WaitingForJob : IState
 
     public void Tick()
     {
+        //Add wait time
 
     }
 

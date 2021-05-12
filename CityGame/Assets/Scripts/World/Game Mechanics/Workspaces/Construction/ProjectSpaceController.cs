@@ -12,6 +12,8 @@ public class ProjectSpaceController : MonoBehaviour
     [Header("Project Space Componenets")]
     [SerializeField] private Slider progresSlider;
 
+    public Slider ProgresSlider { get => progresSlider; set => progresSlider = value; }
+
     private void Awake()
     {
     }

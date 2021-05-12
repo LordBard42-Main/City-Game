@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class CharacterController : MonoBehaviour
 {
+
     [Header("Serialization")]
     [SerializeField] protected PathAndFileName pathAndFileName_CharacterInfo;
     [SerializeField] protected CharacterInformation characterInformation;

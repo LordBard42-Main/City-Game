@@ -35,6 +35,7 @@ public class NPCController : CharacterController
         schedule = GetComponent<Schedule>();
         movement = GetComponent<NPCMovement>();
         dialogueController = GetComponent<DialogueController>();
+        
 
         base.Awake();
     }
@@ -78,7 +79,7 @@ public class NPCController : CharacterController
                 case EventTypes.None:
                     break;
                 case EventTypes.Work:
-                    movement.SetDestination(new Vector2(-3, 13.5f), employeeController.WorkSpace.Scene);
+                    movement.SetDestination(new Vector2(-7, 13.5f), employeeController.WorkSpace.Scene);
                     break;
                 case EventTypes.Lunch:
                     movement.SetDestination(schedule.CurrentActivity.Location, schedule.CurrentActivity.Scene);
@@ -143,11 +144,14 @@ public class NPCController : CharacterController
 
         //Job States
         var waitingOnJobState = new NPC_State_WaitingForJob(this);
-        var workingState = new NPC_State_Working();
+        var workingState = new NPC_State_Working(this);
 
         //Transition involving job
         At(to: travelingState, from: waitingOnJobState, condition: IsWaitingOnJob());
-        At(to: waitingOnJobState, from: travelingState, condition: FoundJob());
+        At(to: travelingState, from: workingState, condition: ArrivedToJob());
+        At(to: waitingOnJobState, from: travelingState, condition: DestinationAvailable());
+        //At(to: workingState, from: travelingState, condition: DestinationAvailable());
+        
 
         At(to: loiteringState, from: travelingState, condition: DestinationAvailable());
         //At(to: travelingState, from: loiteringState, condition: DestinationReached());
@@ -170,7 +174,8 @@ public class NPCController : CharacterController
         Func<bool> IsWaitingOnJob() => () => employeeController.IsEmployed 
                                              && movement.CoordinateDestination == default(Vector2) && movement.SceneDestination == default(Scenes) // Is NPC Moving
                                              && currentScene == EmployeeController.WorkSpace.Scene && employeeController.CurrentProject.CityProject == null; // Is NPC in workspace and is urrent projects null
-        Func<bool> FoundJob() => () => employeeController.IsEmployed && employeeController.CurrentProject.CityProject != null;
+
+        Func<bool> ArrivedToJob() => () => employeeController.CurrentProject.CityProject != null && movement.Position == employeeController.CurrentProject.Location ;
 
         stateMachine.SetState(loiteringState);
     }

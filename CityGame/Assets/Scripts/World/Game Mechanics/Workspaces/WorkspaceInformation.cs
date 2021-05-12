@@ -8,12 +8,15 @@ public class WorkspaceInformation : ISerialize
     [SerializeField] private Characters head;
     [SerializeField] private Characters assistant;
 
+    [SerializeField] private List<CityProjectSpaceRefrence> projectQueue;
+
 
     public void CopyFrom(ISerialize incomingClass)
     {
         var tempClass = incomingClass as WorkspaceInformation;
         Head = tempClass.Head;
         assistant = tempClass.Assistant;
+        projectQueue = tempClass.projectQueue;
     }
 
     public void DeserializeInformation(PathAndFileName pathAndFileName)
@@ -28,5 +31,6 @@ public class WorkspaceInformation : ISerialize
     }
     public Characters Head { get => head; set => head = value; }
     public Characters Assistant { get => assistant; set => assistant = value; }
+    public List<CityProjectSpaceRefrence> ProjectQueue { get => projectQueue; set => projectQueue = value; }
 }
 

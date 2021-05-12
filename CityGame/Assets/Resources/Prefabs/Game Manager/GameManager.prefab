@@ -142,6 +142,7 @@ MonoBehaviour:
   workspaceInformation:
     head: 0
     assistant: 0
+    projectQueue: []
   manager: {fileID: 0}
   assistant: {fileID: 0}
   funds: 0
@@ -149,7 +150,6 @@ MonoBehaviour:
   mediumProjects: []
   largeProjects: []
   cityProjectSpaces: []
-  projectQueue: []
 --- !u!1 &373786229089607862
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +418,7 @@ MonoBehaviour:
     location: {x: 0, y: 0}
     projectSpace: {fileID: 0}
     cityProject: {fileID: 0}
+    amountOfWorkComplete: 0
 --- !u!114 &4096663471368910976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6606,6 +6607,7 @@ MonoBehaviour:
     location: {x: 0, y: 0}
     projectSpace: {fileID: 0}
     cityProject: {fileID: 0}
+    amountOfWorkComplete: 0
 --- !u!114 &4180949985810976542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8458,6 +8460,12 @@ MonoBehaviour:
   workspaceInformation:
     head: 0
     assistant: 0
+    projectQueue:
+    - scene: 0
+      location: {x: 0, y: 0}
+      projectSpace: {fileID: 0}
+      cityProject: {fileID: 0}
+      amountOfWorkComplete: 0
   manager: {fileID: 0}
   assistant: {fileID: 0}
   funds: 0
@@ -8472,7 +8480,7 @@ MonoBehaviour:
     projectSpace: {fileID: 8131540505916326618, guid: 0b53e90a4b029494d84432adff96008e,
       type: 3}
     cityProject: {fileID: 0}
-  projectQueue: []
+    amountOfWorkComplete: 0
 --- !u!1 &9136674006226399640
 GameObject:
   m_ObjectHideFlags: 0
