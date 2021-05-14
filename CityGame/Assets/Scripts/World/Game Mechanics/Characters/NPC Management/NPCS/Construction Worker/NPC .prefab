@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7822423511692080015}
   - component: {fileID: 4915300642775015175}
+  - component: {fileID: 3778483413580657612}
   - component: {fileID: 5125760670858148482}
   - component: {fileID: 4501190860522667494}
   - component: {fileID: 1783162925428008918}
@@ -49,16 +50,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f38fb5c1168e9347b8459325da8cd07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathAndFileName_CharacterInfo:
-    path: 
-    fileName: 
-  characterInformation:
-    itemDisposition:
-      dictionary: []
-    characterDisposition:
-      dictionary: []
-  character: {fileID: 0}
+  path: {fileID: 0}
+  npc: {fileID: 0}
   currentScene: 0
+--- !u!114 &3778483413580657612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125760670858148536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02e3890c546e04e4e90eb64f706a37cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5125760670858148482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,8 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 0}
-  coordinateDestination: {x: 0, y: 0}
-  sceneDestination: 0
   walkSpeed: 3
 --- !u!114 &1783162925428008918
 MonoBehaviour:
@@ -100,22 +104,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e010d2e0a8de3488b912c2c7d64ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathAndFileName_ScheduleInfo:
-    path: 
-    fileName: 
-  scheduleInformation:
-    q1:
-      jobSchedule:
-        events: []
-      joblessSchedule:
-        events: []
+  JSONFile: {fileID: 4900000, guid: 3762078aa3ae6db40a7194a6e44e8c32, type: 3}
+  q1:
+    regularDay:
+      events: []
   currentEvent:
-    eventType: 
+    targetScene: 
     startTime:
       hours: 0
       minutes: 0
       seconds: 0
-  currentActivity: {fileID: 0}
+    coordinates: {x: 0, y: 0}
 --- !u!114 &3212958375259477965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +188,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

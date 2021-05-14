@@ -20,10 +20,6 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
     [SerializeField] protected CharacterController manager;
     [SerializeField] protected CharacterController assistant;
 
-    [Header("Office information")]
-    [SerializeField] protected Vector2 managerOfficeLocation;
-    [SerializeField] protected Vector2 assistantOfficeLocation;
-
     [Header("Finaces")]
     [SerializeField] protected float funds;
 
@@ -33,10 +29,10 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
     [SerializeField] protected List<CityProject> largeProjects;
 
     [Header("City Project Spaces")]
-    [SerializeField] private List<CityProjectSpaceHolder> cityProjectSpaces;
+    [SerializeField] protected List<CityProjectSpaceRefrence> cityProjectSpaces;
 
     [Header("Project Queue")]
-    protected List<CityProjectTicket> projectQueue = new List<CityProjectTicket>();
+    protected List<CityProjectSpaceRefrence> projectQueue = new List<CityProjectSpaceRefrence>();
 
     //Events
     public delegate void ProjectQueueUpdated();
@@ -47,13 +43,7 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
     {
         workspaceInformation.DeserializeInformation(pathAndFileName_WorkspaceInfo);
 
-        cityProjectSpaces = workspaceInformation.ProjectSpaces;
         projectQueue = workspaceInformation.ProjectQueue;
-
-        foreach(CityProjectTicket projectTicket in projectQueue)
-        {
-            projectTicket.CityProjectSpaceHolder.CityProjectSpace.IsBeingWorkedOn = true;
-        }
 
     }
     private void Start()
@@ -141,19 +131,14 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
         return searchProjects;
     }
 
-    public void AddCityProjectToQueue()
+    public void AddCityProjectToQueue(CityProjectSpaceRefrence cityProjectRefrence, CityProject cityProject)
     {
-
-        CityProjectTicket projectTicket = CityProjectTicketBuilder.CreateSmallProjectTicket(this);
-
-        if (projectTicket != default(CityProjectTicket))
-            projectQueue.Add(projectTicket);
+        cityProjectRefrence.CityProject = cityProject;
+        projectQueue.Add(cityProjectRefrence);
 
         if (OnProjectQueueUpdated != null)
             OnProjectQueueUpdated.Invoke();
     }
-
-
 
     public void InitializeWorkspace()
     {
@@ -163,12 +148,12 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
 
         if (manager != null)
         {
-            manager.EmployeeController.SetEmploymentStatus(this, Employee_Type.Manager, managerOfficeLocation);
+            manager.EmployeeController.SetEmploymentStatus(this, Employee_Type.Manager);
         }
         
         if (assistant != null)
         {
-            assistant.EmployeeController.SetEmploymentStatus(this, Employee_Type.Assistant, assistantOfficeLocation);
+            assistant.EmployeeController.SetEmploymentStatus(this, Employee_Type.Assistant);
 
         }
         
@@ -176,8 +161,5 @@ public abstract class Workspace : MonoBehaviour, IWorkspace
 
     }
     public Scenes Scene { get => scene; private set => scene = value; }
-    public List<CityProjectTicket> ProjectQueue { get => projectQueue; protected set => projectQueue = value; }
-    public Vector2 ManagerOfficeLocation { get => managerOfficeLocation; private set => managerOfficeLocation = value; }
-    public Vector2 AssistantOfficeLocation { get => assistantOfficeLocation; private set => assistantOfficeLocation = value; }
-    public List<CityProjectSpaceHolder> CityProjectSpaces { get => cityProjectSpaces; protected set => cityProjectSpaces = value; }
+    public List<CityProjectSpaceRefrence> ProjectQueue { get => projectQueue; protected set => projectQueue = value; }
 }

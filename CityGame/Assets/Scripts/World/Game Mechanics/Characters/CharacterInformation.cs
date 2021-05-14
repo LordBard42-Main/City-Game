@@ -10,7 +10,7 @@ public class CharacterInformation: ISerialize
 {
     [Header("Disposition")]
     [SerializeField] private GenericDictionary<Items, Disposition> itemDisposition;
-    [SerializeField] private GenericDictionary<Character, Disposition> characterDisposition;
+    [SerializeField] private GenericDictionary<Characters, Disposition> characterDisposition;
 
 
     public void DeserializeInformation(PathAndFileName pathAndFileName )
@@ -34,5 +34,5 @@ public class CharacterInformation: ISerialize
     }
 
     public GenericDictionary<Items, Disposition> ItemDisposition { get => itemDisposition; private set => itemDisposition = value; }
-    public GenericDictionary<Character, Disposition> CharacterDisposition { get => characterDisposition; set => characterDisposition = value; }
+    public GenericDictionary<Characters, Disposition> CharacterDisposition { get => characterDisposition; set => characterDisposition = value; }
 }

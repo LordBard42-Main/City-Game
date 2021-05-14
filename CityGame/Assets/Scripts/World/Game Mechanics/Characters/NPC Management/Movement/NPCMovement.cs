@@ -62,7 +62,7 @@ public class NPCMovement : MonoBehaviour
         currentScene = scenePath.Pop();
         if (scenePath.Count == 0)
         {
-            //Debug.Log("Start:" + position + " End: " + coordinateDestination + " Scene: " + currentScene);
+            Debug.Log("Start:" + position + " End: " + coordinateDestination + " Scene: " + currentScene);
             coordinatePath = pathfinder.GetCoordinatePath(position, coordinateDestination, currentScene);
         }
         else

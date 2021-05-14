@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618e4c917e444ee428596c7915a255d0, type: 3}
-  m_Name: Librarian Assistant
+  m_Script: {fileID: 11500000, guid: 1764e9d07730f224c8e514ae33a0b400, type: 3}
+  m_Name: Roadwork
   m_EditorClassIdentifier: 
-  name: Fred
-  icon: {fileID: -6807587041011187093, guid: 3f4629b16d8f5c641b51ec18a62807e6, type: 3}
-  characterTrait: 1
+  workspace: 1
+  projectSize: 2
+  id: 1
+  skillLevelRequired: 11
+  buildPrefab: {fileID: 0}
+  constructionPrefab: {fileID: 0}

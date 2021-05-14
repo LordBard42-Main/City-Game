@@ -15,7 +15,7 @@ public class NPCManager : MonoBehaviour
 
     //NPCS
     [SerializeField] private NPCController librarian;
-    [SerializeField] private NPCController librarianAssistant;
+    [SerializeField] private NPCController constructionWorker;
 
 
 
@@ -44,6 +44,6 @@ public class NPCManager : MonoBehaviour
         gameSceneManager = GameSceneManager.instance;
 
         gameClock.OnHour += librarian.CheckSchedule;
-        gameClock.OnHour += librarianAssistant.CheckSchedule;
+        //gameClock.OnHour += constructionWorker.CheckSchedule;
     }
 }
