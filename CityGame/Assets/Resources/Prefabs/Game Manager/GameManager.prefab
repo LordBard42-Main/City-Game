@@ -140,11 +140,14 @@ MonoBehaviour:
     path: 
     fileName: 
   workspaceInformation:
-    head: 0
-    assistant: 0
+    head: {fileID: 0}
+    assistant: {fileID: 0}
     projectQueue: []
+    projectSpaces: []
   manager: {fileID: 0}
   assistant: {fileID: 0}
+  managerOfficeLocation: {x: 0, y: 0}
+  assistantOfficeLocation: {x: 0, y: 0}
   funds: 0
   smallProjects: []
   mediumProjects: []
@@ -411,12 +414,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmployed: 0
+  hasProject: 0
   workspace: {fileID: 0}
   employeeType: 0
+  officeLocation: {x: 0, y: 0}
   currentProject:
-    scene: 0
-    location: {x: 0, y: 0}
-    projectSpace: {fileID: 0}
+    cityProjectSpace:
+      cityProjectSpace: {fileID: 0}
+      isWorkAvailable: 0
     cityProject: {fileID: 0}
     amountOfWorkComplete: 0
 --- !u!114 &4096663471368910976
@@ -1924,7 +1929,7 @@ MonoBehaviour:
   cameraFollow: {fileID: 5234073734990199526}
   followTransform: {fileID: 9158443047128258700}
   zoom: 5
---- !u!114 &281427050199277590
+--- !u!114 &3193065175207526219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1933,26 +1938,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961275426086825412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4e010d2e0a8de3488b912c2c7d64ac7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0298bac477676bb4a9639908e7e6bc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathAndFileName_ScheduleInfo:
-    path: 
-    fileName: 
-  scheduleInformation:
-    q1:
-      jobSchedule:
-        events: []
-      joblessSchedule:
-        events: []
-  currentEvent:
-    eventType: 
-    startTime:
-      hours: 0
-      minutes: 0
-      seconds: 0
-  currentActivity: {fileID: 0}
---- !u!114 &5591326924266325582
+  pathAndFileName_Skill:
+    path: /NPC
+    fileName: /librarianAssistantSkill.json
+  skillInformation:
+    librarySkill:
+      level: 0
+--- !u!114 &3340800198800048388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1961,9 +1956,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961275426086825412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efa8d27e171b3a54ea27a7a7ce2a5467, type: 3}
+  m_Script: {fileID: 11500000, guid: 093490fbabb56644caf400cc72dfc705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEmployed: 0
+  hasProject: 0
+  workspace: {fileID: 0}
+  employeeType: 0
+  officeLocation: {x: 0, y: 0}
+  currentProject:
+    cityProjectSpace:
+      cityProjectSpace: {fileID: 0}
+      isWorkAvailable: 0
+    cityProject: {fileID: 0}
+    amountOfWorkComplete: 0
 --- !u!1 &2081773897296773302
 GameObject:
   m_ObjectHideFlags: 0
@@ -6600,12 +6606,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEmployed: 0
+  hasProject: 0
   workspace: {fileID: 0}
   employeeType: 0
+  officeLocation: {x: 0, y: 0}
   currentProject:
-    scene: 0
-    location: {x: 0, y: 0}
-    projectSpace: {fileID: 0}
+    cityProjectSpace:
+      cityProjectSpace: {fileID: 0}
+      isWorkAvailable: 0
     cityProject: {fileID: 0}
     amountOfWorkComplete: 0
 --- !u!114 &4180949985810976542
@@ -6672,7 +6680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   librarian: {fileID: 6819496306711307363}
-  constructionWorker: {fileID: 1739271623261538427}
+  librarianAssistant: {fileID: 1739271623261538427}
 --- !u!114 &2352449011867043832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8458,16 +8466,25 @@ MonoBehaviour:
     path: /Workspaces
     fileName: /libraryInformation.json
   workspaceInformation:
-    head: 0
-    assistant: 0
+    head: {fileID: 0}
+    assistant: {fileID: 0}
     projectQueue:
-    - scene: 0
-      location: {x: 0, y: 0}
-      projectSpace: {fileID: 0}
+    - cityProjectSpace:
+        cityProjectSpace: {fileID: 0}
+        isWorkAvailable: 0
       cityProject: {fileID: 0}
       amountOfWorkComplete: 0
+    projectSpaces:
+    - cityProjectSpace: {fileID: 11400000, guid: 08f26feea0dbeae41bdad42555f7af2e,
+        type: 2}
+      isWorkAvailable: 0
+    - cityProjectSpace: {fileID: 11400000, guid: 869492d7972bc4e4798cd3684cbc4ee0,
+        type: 2}
+      isWorkAvailable: 0
   manager: {fileID: 0}
   assistant: {fileID: 0}
+  managerOfficeLocation: {x: -3, y: 13}
+  assistantOfficeLocation: {x: -7, y: 13}
   funds: 0
   smallProjects:
   - {fileID: 0}
@@ -8475,12 +8492,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc0583133eb2bfb4c8dd5fb04dcb7d9b, type: 2}
   largeProjects: []
   cityProjectSpaces:
-  - scene: 3
-    location: {x: 3, y: 13}
-    projectSpace: {fileID: 8131540505916326618, guid: 0b53e90a4b029494d84432adff96008e,
-      type: 3}
-    cityProject: {fileID: 0}
-    amountOfWorkComplete: 0
+  - cityProjectSpace: {fileID: 11400000, guid: 08f26feea0dbeae41bdad42555f7af2e, type: 2}
+    isWorkAvailable: 1
+  - cityProjectSpace: {fileID: 11400000, guid: 869492d7972bc4e4798cd3684cbc4ee0, type: 2}
+    isWorkAvailable: 0
 --- !u!1 &9136674006226399640
 GameObject:
   m_ObjectHideFlags: 0
@@ -8793,12 +8808,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7899403357066495126}
     m_Modifications:
+    - target: {fileID: 1783162925428008918, guid: 5bcfa76aadbffd345822e15f33a65f9c,
+        type: 3}
+      propertyPath: pathAndFileName_ScheduleInfo.path
+      value: /NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 1783162925428008918, guid: 5bcfa76aadbffd345822e15f33a65f9c,
+        type: 3}
+      propertyPath: pathAndFileName_ScheduleInfo.fileName
+      value: /librarianAssistantSchedule.json
+      objectReference: {fileID: 0}
     - target: {fileID: 4915300642775015175, guid: 5bcfa76aadbffd345822e15f33a65f9c,
         type: 3}
       propertyPath: path
       value: 
       objectReference: {fileID: 11400000, guid: 5bb94efda9e835c4d9100e6de4973794,
         type: 2}
+    - target: {fileID: 4915300642775015175, guid: 5bcfa76aadbffd345822e15f33a65f9c,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 11400000, guid: f3821ce9a6cdd8647b95c4758a25195b,
+        type: 2}
+    - target: {fileID: 4915300642775015175, guid: 5bcfa76aadbffd345822e15f33a65f9c,
+        type: 3}
+      propertyPath: pathAndFileName_CharacterInfo.path
+      value: /NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915300642775015175, guid: 5bcfa76aadbffd345822e15f33a65f9c,
+        type: 3}
+      propertyPath: pathAndFileName_CharacterInfo.fileName
+      value: /librarianAssistantInformation.json
+      objectReference: {fileID: 0}
     - target: {fileID: 5125760670858148536, guid: 5bcfa76aadbffd345822e15f33a65f9c,
         type: 3}
       propertyPath: m_Name

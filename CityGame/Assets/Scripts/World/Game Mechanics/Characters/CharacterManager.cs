@@ -32,11 +32,11 @@ public class CharacterManager : MonoBehaviour
     /// </summary>
     /// <param name="characterID"></param>
     /// <returns></returns>
-    public CharacterController GetCharacterConroller(Characters characterID)
+    public CharacterController GetCharacterConroller(Character character)
     {
         foreach(CharacterController characterController in characterControllers)
         {
-            if (characterController.Character.Id == characterID)
+            if (characterController.Character == character)
                 return characterController;
             
         }

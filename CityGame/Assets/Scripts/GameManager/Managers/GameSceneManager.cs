@@ -134,7 +134,6 @@ public class GameSceneManager : MonoBehaviour
             case Doors.LibraryDoor_Store:
 
                 coords = new Vector2(0f, 2f);
-                Debug.Log(coords.ToString());
                 break;
 
             default:

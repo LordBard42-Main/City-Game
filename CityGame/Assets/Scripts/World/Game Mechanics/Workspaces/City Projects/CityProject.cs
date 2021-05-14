@@ -10,7 +10,6 @@ public class CityProject : ScriptableObject
     [Header("Project Data")]
     [SerializeField] [ReadOnly] protected Workspace_ID workspace;
     [SerializeField] [ReadOnly] protected ProjectSize_IDs projectSize;
-    [SerializeField] protected int id;
 
 
 

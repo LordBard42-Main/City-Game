@@ -6,9 +6,10 @@ public class NPC_State_Working : IState
 {
 
     private readonly NPCController npcController;
-    private CityProjectSpaceRefrence projectSpaceRefrence;
+    private CityProjectTicket projectTicket;
     private ProjectSpaceController projectSpaceController;
 
+    private bool projectSpaceActive;
     
 
     public NPC_State_Working(NPCController npcController)
@@ -19,34 +20,59 @@ public class NPC_State_Working : IState
 
     public void OnEnter()
     {
-        Debug.Log(npcController.EmployeeController.CurrentProject.CityProject);
-        projectSpaceRefrence = npcController.EmployeeController.CurrentProject;
-        projectSpaceController = Object.Instantiate(npcController.EmployeeController.CurrentProject.ProjectSpace, npcController.EmployeeController.CurrentProject.Location, Quaternion.identity).GetComponent<ProjectSpaceController>();
-        
+
+        projectTicket = npcController.EmployeeController.CurrentProject;
+
+        GameSceneManager.instance.OnSceneLoaded += CheckForSceneComponents;
+
+        CheckForSceneComponents(GameSceneManager.instance.GetCurrentScene());
 
     }
 
     public void OnExit()
     {
-
+        if (projectSpaceActive)
+        {
+            Object.Destroy(projectSpaceController.gameObject);
+            projectSpaceActive = false;
+        }
     }
 
     public void Tick()
     {
-        var percentComplete = projectSpaceRefrence.AmountOfWorkComplete/projectSpaceRefrence.CityProject.TimeToComplete;
+        var percentComplete = projectTicket.AmountOfWorkComplete/projectTicket.CityProjectHolder.CityProject.TimeToComplete;
 
         if (percentComplete < 1)
         {
-            projectSpaceRefrence.AmountOfWorkComplete += 1f * Time.deltaTime;
-            projectSpaceController.ProgresSlider.value = percentComplete;
+            projectTicket.AmountOfWorkComplete += 1f * Time.deltaTime;
+
+            if(projectSpaceActive)
+                projectSpaceController.ProgresSlider.value = percentComplete;
         }
         else
         {
-            npcController.EmployeeController.CurrentProject = null;
-            npcController.MovementHandler.SetDestination(new Vector2(-3, 13.5f), npcController.EmployeeController.WorkSpace.Scene);
+            npcController.EmployeeController.RemoveFinishedProject();
+            npcController.MovementHandler.SetDestination(npcController.EmployeeController.OfficeLocation, npcController.EmployeeController.WorkSpace.Scene);
         }
 
         
 
+    }
+
+    public void CheckForSceneComponents(Scenes scene)
+    {
+        
+
+        if (npcController.CurrentScene == GameSceneManager.instance.GetCurrentScene())
+        {
+            projectSpaceController = Object.Instantiate(npcController.EmployeeController.CurrentProject.CityProjectSpaceHolder.CityProjectSpace.ProjectSpace, npcController.EmployeeController.CurrentProject.CityProjectSpaceHolder.CityProjectSpace.Location, Quaternion.identity).GetComponent<ProjectSpaceController>();
+            projectSpaceActive = true;
+        }
+        else if(projectSpaceController != null)
+        {
+            Object.Destroy(projectSpaceController.gameObject);
+            projectSpaceActive = false;
+            
+        }
     }
 }

@@ -5,10 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class WorkspaceInformation : ISerialize
 {
-    [SerializeField] private Characters head;
-    [SerializeField] private Characters assistant;
+    [SerializeField] private Character head;
+    [SerializeField] private Character assistant;
 
-    [SerializeField] private List<CityProjectSpaceRefrence> projectQueue;
+    [SerializeField] private List<CityProjectTicket> projectQueue;
+    [SerializeField] private List<CityProjectSpaceHolder> projectSpaces;
 
 
     public void CopyFrom(ISerialize incomingClass)
@@ -17,6 +18,7 @@ public class WorkspaceInformation : ISerialize
         Head = tempClass.Head;
         assistant = tempClass.Assistant;
         projectQueue = tempClass.projectQueue;
+        ProjectSpaces = tempClass.ProjectSpaces;
     }
 
     public void DeserializeInformation(PathAndFileName pathAndFileName)
@@ -29,8 +31,9 @@ public class WorkspaceInformation : ISerialize
     {
         ClassSerializer.SerializeClass(this, pathAndFileName);
     }
-    public Characters Head { get => head; set => head = value; }
-    public Characters Assistant { get => assistant; set => assistant = value; }
-    public List<CityProjectSpaceRefrence> ProjectQueue { get => projectQueue; set => projectQueue = value; }
+    public Character Head { get => head; set => head = value; }
+    public Character Assistant { get => assistant; set => assistant = value; }
+    public List<CityProjectTicket> ProjectQueue { get => projectQueue; set => projectQueue = value; }
+    public List<CityProjectSpaceHolder> ProjectSpaces { get => projectSpaces; set => projectSpaces = value; }
 }
 
