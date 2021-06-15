@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -18,6 +19,7 @@ public class TimeStamp
     public int Minutes { get => minutes; set => minutes = value; }
     public int Seconds { get => seconds; set => seconds = value; }
 
+    [JsonConstructor]
     public TimeStamp(int hours, int minutes)
     {
         this.hours = hours;

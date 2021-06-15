@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,14 @@ public class SkillInformation : ISerialize
 {
 
     [Header("Skills")]
-    [SerializeField] private LibrarySkill librarySkill;
-    [SerializeField] private ConstructionSkill constructionSkill;
+    [SerializeField] public LibrarySkill librarySkill;
+    [SerializeField] public ConstructionSkill constructionSkill;
 
     public void CopyFrom(ISerialize incomingClass)
     {
         SkillInformation tempClass = incomingClass as SkillInformation;
-        librarySkill = tempClass.LibrarySkill;
-        constructionSkill = tempClass.ConstructionSkill;
+        librarySkill = tempClass.librarySkill;
+        constructionSkill = tempClass.constructionSkill;
 
 
     }
@@ -32,6 +33,4 @@ public class SkillInformation : ISerialize
         ClassSerializer.SerializeClass(this, pathAndFileName);
     }
 
-    public LibrarySkill LibrarySkill { get => librarySkill; private set => librarySkill = value; }
-    public ConstructionSkill ConstructionSkill { get => constructionSkill; private set => constructionSkill = value; }
 }

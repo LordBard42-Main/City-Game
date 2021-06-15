@@ -34,11 +34,15 @@ public class CharacterManager : MonoBehaviour
     /// <returns></returns>
     public CharacterController GetCharacterConroller(Characters characterID)
     {
-        foreach(CharacterController characterController in characterControllers)
+        if(characterID != default(Characters))
         {
-            if (characterController.Character.Id == characterID)
-                return characterController;
+            foreach(CharacterController characterController in characterControllers)
+            {
+                if (characterController.Character.Id == characterID)
+                    return characterController;
             
+            }
+
         }
 
         return default(CharacterController);

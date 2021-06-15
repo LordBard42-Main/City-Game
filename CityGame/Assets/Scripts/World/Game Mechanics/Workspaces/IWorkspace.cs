@@ -1,15 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
-public interface IWorkspace
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="T"> ProjectID</typeparam>
+/// <typeparam name="S"> ProjectSpaceID</typeparam>
+public interface IWorkspace 
 {
-    void InitializeWorkspace();
-    List<CityProject> GetProjectsBySkillLevel(ProjectSize_IDs size);
 
-    List<CityProject> GetObjectsOfSkillLevel(ProjectSize_IDs size, int level);
+    public void CheckForAvailableJobs();
+    public ICityProjectTicket GetProjectTicket(SkillController skillController);
+    public Scenes GetSceneLocation();
 
-    List<CityProject> GetObjectsBetweenSkillLevels(ProjectSize_IDs size, int floor, int ceiling);
 
+    //Events
+    public delegate void ProjectQueueUpdated();
+    public event ProjectQueueUpdated OnProjectQueueUpdated;
 
 }

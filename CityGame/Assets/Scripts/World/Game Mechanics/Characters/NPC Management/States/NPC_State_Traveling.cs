@@ -22,7 +22,8 @@ public class NPC_State_Traveling : IState
 
     public void OnEnter()
     {
-        Debug.Log("Entering Traveling");
+
+        controller.CurrentState = NPCStates.Traveling;
         controller.MovementHandler.StartMovement(controller.CurrentScene);
         controller.MovementHandler.IsTraveling = true; 
 

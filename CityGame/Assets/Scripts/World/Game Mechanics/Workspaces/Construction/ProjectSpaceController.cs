@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ProjectSpaceController : MonoBehaviour
 {
 
-    private CityProjectSpaceRefrence cityProjectReference;
+    private CityProjectSpace cityProjectReference;
 
 
     [Header("Project Space Componenets")]

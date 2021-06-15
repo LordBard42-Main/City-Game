@@ -12,7 +12,6 @@ public class ConstructionProject : CityProject
 
     protected virtual void OnValidate()
     {
-        workspace = Workspace_ID.Construction;
     }
 
     public Transform BuildPrefab { get => buildPrefab; private set => buildPrefab = value; }

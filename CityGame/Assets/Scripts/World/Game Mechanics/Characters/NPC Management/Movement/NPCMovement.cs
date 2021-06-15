@@ -28,6 +28,7 @@ public class NPCMovement : MonoBehaviour
     private float moveTimeCurrent;
     private Vector2 nextWaypoint;
     private bool isTraveling = false;
+    private bool isTravelingPaused = false;
 
     //Callback to alert npc of current path ending
     public delegate void SceneChangedCallback(Scenes scene);
@@ -48,11 +49,13 @@ public class NPCMovement : MonoBehaviour
     {
         this.coordinateDestination = coordinateDestination;
         this.sceneDestination = sceneDestination;
+        isTraveling = true;
     }
 
     public void StartMovement(Scenes currentScene)
     {
         scenePath = pathfinder.GetScenePath(currentScene, sceneDestination);
+        isTravelingPaused = false;
         UpdateMovement();
 
     }
@@ -124,6 +127,7 @@ public class NPCMovement : MonoBehaviour
         {
             coordinateDestination = default(Vector2);
             sceneDestination = default(Scenes);
+            isTraveling = false;
         }
         else {
             position = pathfinder.GetNodeToScene(scenePath.Peek(), currentScene).location;
@@ -157,4 +161,5 @@ public class NPCMovement : MonoBehaviour
     public bool IsTraveling { get => isTraveling; set => isTraveling = value; }
     public Vector2 CoordinateDestination { get => coordinateDestination; private set => coordinateDestination = value; }
     public Scenes SceneDestination { get => sceneDestination; private set => sceneDestination = value; }
+    public bool IsTravelingPaused { get => isTravelingPaused; set => isTravelingPaused = value; }
 }

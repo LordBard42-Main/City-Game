@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterInformation: ISerialize
 {
-    [Header("Disposition")]
+    [Header("Disposition"), JsonIgnore]
     [SerializeField] private GenericDictionary<Items, Disposition> itemDisposition;
     [SerializeField] private GenericDictionary<Characters, Disposition> characterDisposition;
 

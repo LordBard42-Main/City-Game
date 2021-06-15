@@ -12,10 +12,7 @@ public class NPCManager : MonoBehaviour
     //Singleton Managers
     GameClock gameClock;
     GameSceneManager gameSceneManager;
-
-    //NPCS
-    [SerializeField] private NPCController librarian;
-    [SerializeField] private NPCController constructionWorker;
+    CharacterManager characterManager;
 
 
 
@@ -23,7 +20,7 @@ public class NPCManager : MonoBehaviour
     protected void Awake()
     {
 
-    #region Singleton
+        #region Singleton
         if (instance != null)
         {
             Debug.LogWarning("More than one instance of NPCManager found");
@@ -32,9 +29,9 @@ public class NPCManager : MonoBehaviour
         }
 
         instance = this;
-    #endregion
-        
+        #endregion
 
+        characterManager = CharacterManager.instance;
 
     }
 
@@ -43,7 +40,27 @@ public class NPCManager : MonoBehaviour
         gameClock = GameClock.instance;
         gameSceneManager = GameSceneManager.instance;
 
-        gameClock.OnHour += librarian.CheckSchedule;
+        foreach(CharacterController characterController in characterManager.Characters)
+        {
+            if (characterController.Character.Id == Characters.Player)
+                continue;
+
+            gameClock.OnHour += (characterController as NPCController).CheckSchedule;
+
+        }
         //gameClock.OnHour += constructionWorker.CheckSchedule;
+    }
+
+    private void OnDestroy()
+    {
+        if(NPCManager.instance == this)
+            foreach (CharacterController characterController in characterManager.Characters)
+            {
+                if (characterController.Character.Id == Characters.Player)
+                    continue;
+
+                gameClock.OnHour -= (characterController as NPCController).CheckSchedule;
+
+            }
     }
 }

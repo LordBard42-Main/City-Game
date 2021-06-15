@@ -46,8 +46,7 @@ public class Schedule : MonoBehaviour
             if (currentTime.IsSameTime(currentSchedule.Peek().StartTime))
             {
                 currentEvent = CurrentSchedule.Pop();
-                Debug.Log(activityManager);
-                currentActivity = activityManager.GetActivityByEventTypes(currentEvent.GetEventType());
+                currentActivity = activityManager.GetActivityByEventTypes(currentEvent.EventType);
 
                 return true;
             }

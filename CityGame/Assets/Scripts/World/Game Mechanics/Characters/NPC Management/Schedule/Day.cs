@@ -9,5 +9,5 @@ public class Day
 {
     [SerializeField] private List<ScheduleEvent> events;
 
-    public List<ScheduleEvent> Events { get => events; private set => events = value; }
+    public List<ScheduleEvent> Events { get => events; set => events = value; }
 }

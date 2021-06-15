@@ -6,6 +6,7 @@ public class NPC_State_WaitingForJob : IState
 {
     private readonly NPCController controller;
     private readonly EmployeeController employeeController;
+    public bool hasJob;
     
     public NPC_State_WaitingForJob(NPCController controller)
     {
@@ -15,8 +16,7 @@ public class NPC_State_WaitingForJob : IState
 
     public void OnEnter()
     {
-        Debug.Log("Enter waitng state State");
-
+        controller.CurrentState = NPCStates.WaitingOnJob;
         employeeController.WorkSpace.OnProjectQueueUpdated += ProjectQueueUpdated;
         ProjectQueueUpdated();
 
@@ -35,15 +35,12 @@ public class NPC_State_WaitingForJob : IState
 
     public void ProjectQueueUpdated()
     {
-        if (employeeController.CurrentProject.CityProject == null)
-        {
-            var wasUpdated = employeeController.GetNewProject();
+        hasJob = employeeController.GetJobFromQueue();
 
-            if(wasUpdated)
-            {
-                controller.MovementHandler.SetDestination(employeeController.CurrentProject.Location, employeeController.CurrentProject.Scene);
-            }
-            
+        if(hasJob)
+        {
+            controller.MovementHandler.SetDestination(employeeController.CurrentProject.GetDestinationPosition(), employeeController.CurrentProject.GetDestinationScene());
+        
         }
     }
 }

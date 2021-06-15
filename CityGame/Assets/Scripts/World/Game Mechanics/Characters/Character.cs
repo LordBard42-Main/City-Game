@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Characters { None, Player, LibraryOwner, ConstructionOwner }
-public enum Disposition { Neutral, Hate, Dislike, Like, Love }
-public enum CharacterTraits { Neutral, Easygoing, Hardball }
-
 [CreateAssetMenu(fileName = "NewNPC", menuName = "NPC/NPC")]
 public class Character : ScriptableObject
 {

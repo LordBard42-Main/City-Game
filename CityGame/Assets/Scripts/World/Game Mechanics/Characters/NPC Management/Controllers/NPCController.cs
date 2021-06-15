@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
-
+public enum NPCStates { Traveling, Working, ManagingOffice, WaitingOnJob, Loitering, Talking}
 public class NPCController : CharacterController
 {
 
@@ -24,6 +25,8 @@ public class NPCController : CharacterController
 
     //State Machine
     private StateMachine stateMachine;
+    [ShowInInspector,ReadOnly]
+    private NPCStates currentState;
 
 
    
@@ -74,12 +77,12 @@ public class NPCController : CharacterController
 
         if(wasUpdated)
         {
-            switch (schedule.CurrentEvent.GetEventType())
+            switch (schedule.CurrentEvent.EventType)
             {
                 case EventTypes.None:
                     break;
                 case EventTypes.Work:
-                    movement.SetDestination(new Vector2(-7, 13.5f), employeeController.WorkSpace.Scene);
+                    movement.SetDestination(new Vector2(-7, 13.5f), (employeeController.WorkSpace as Workspace).Scene);
                     break;
                 case EventTypes.Lunch:
                     movement.SetDestination(schedule.CurrentActivity.Location, schedule.CurrentActivity.Scene);
@@ -91,7 +94,6 @@ public class NPCController : CharacterController
             }
         }
 
-        
     }
 
     public void UpdateCurrentScene(Scenes scene)
@@ -145,37 +147,49 @@ public class NPCController : CharacterController
         //Job States
         var waitingOnJobState = new NPC_State_WaitingForJob(this);
         var workingState = new NPC_State_Working(this);
+        var managingOfficeState = new NPC_State_ManagingOffice(this);
 
         //Transition involving job
-        At(to: travelingState, from: waitingOnJobState, condition: IsWaitingOnJob());
-        At(to: travelingState, from: workingState, condition: ArrivedToJob());
+        ///Misc
         At(to: waitingOnJobState, from: travelingState, condition: DestinationAvailable());
-        //At(to: workingState, from: travelingState, condition: DestinationAvailable());
-        
+        ///Managing/Working Office
+        At(to: travelingState, from: managingOfficeState, condition: IsManagingOffice());
+        At(to: travelingState, from: waitingOnJobState, condition: IsWaitingOnJob());
+        ///Working
+        At(to: workingState, from: travelingState, condition: DestinationAvailable());
+        At(to: travelingState, from: workingState, condition: ArrivedToJob());
 
+        //Loitering Transitions
         At(to: loiteringState, from: travelingState, condition: DestinationAvailable());
         //At(to: travelingState, from: loiteringState, condition: DestinationReached());
 
         At(to: travelingState, from: talkingState, condition: StartDialogue());
         At(to: loiteringState, from: talkingState, condition: StartDialogue());
 
+        //Pause Transitions
         At(to: talkingState, from: pauseState, condition: StartPause());
-
         At(to: pauseState, from: travelingState, condition: EndPause());
-        At(to: pauseState, from: loiteringState, condition: EndPause());
 
         void At(IState to, IState from, Func<bool> condition) => stateMachine.AddTransition(to, from, condition);
 
-        Func<bool> DestinationAvailable() => () => movement.CoordinateDestination != default(Vector2) && movement.SceneDestination != default(Scenes);
-        Func<bool> DestinationReached() => () => movement.CoordinateDestination == default(Vector2) && movement.SceneDestination == default(Scenes);
+        //General Conditions
+        Func<bool> DestinationAvailable() => () => movement.IsTraveling && !movement.IsTravelingPaused;
+
+        //Dialogue Conditions
         Func<bool> StartDialogue() => () => dialogueController.AttemptDialogue();
         Func<bool> StartPause() => () => talkingState.ReachedDialogueEnd;
         Func<bool> EndPause() => () => pauseState.CurrentTime >= pauseState.WAITTIME;
-        Func<bool> IsWaitingOnJob() => () => employeeController.IsEmployed 
-                                             && movement.CoordinateDestination == default(Vector2) && movement.SceneDestination == default(Scenes) // Is NPC Moving
-                                             && currentScene == EmployeeController.WorkSpace.Scene && employeeController.CurrentProject.CityProject == null; // Is NPC in workspace and is urrent projects null
 
-        Func<bool> ArrivedToJob() => () => employeeController.CurrentProject.CityProject != null && movement.Position == employeeController.CurrentProject.Location ;
+        //Working Conditions 
+        Func<bool> IsWaitingOnJob() => () => employeeController.IsEmployed && employeeController.EmployeeType == Employee_Type.Assistant
+                                             && !movement.IsTraveling // Is NPC Not Moving
+                                             && currentScene == (EmployeeController.WorkSpace as Workspace).Scene && employeeController.CurrentProject == null; // Is NPC in workspace and is urrent projects null
+        
+        Func<bool> IsManagingOffice() => () => employeeController.IsEmployed && employeeController.EmployeeType == Employee_Type.Manager
+                                             && !movement.IsTraveling // Is NPC Not Moving
+                                             && currentScene == (EmployeeController.WorkSpace as Workspace).Scene && employeeController.CurrentProject == null; // Is NPC in workspace and is urrent projects null
+
+        Func<bool> ArrivedToJob() => () => employeeController.HasATicket && movement.Position == employeeController.CurrentProject.GetDestinationPosition();
 
         stateMachine.SetState(loiteringState);
     }
@@ -192,4 +206,5 @@ public class NPCController : CharacterController
     public NPCMovement MovementHandler { get => movement; private set => movement = value; }
     public DialogueController DialogueController { get => dialogueController; private set => dialogueController = value; }
     public Scenes CurrentScene { get => currentScene; private set => currentScene = value; }
+    public NPCStates CurrentState { get => currentState; set => currentState = value; }
 }

@@ -24,14 +24,13 @@ public class SkillController : MonoBehaviour
         switch (skillID)
         {
             case Skills.LibrarySkill:
-                return skillInformation.LibrarySkill;
+                return skillInformation.librarySkill;
             case Skills.ConstructionSkill:
-                return skillInformation.ConstructionSkill;
+                return skillInformation.constructionSkill;
             default:
                 break;
         }
         return default(Skill);
     }
 
-    public SkillInformation SkillInformation { get => skillInformation; private set => skillInformation = value; }
 }
