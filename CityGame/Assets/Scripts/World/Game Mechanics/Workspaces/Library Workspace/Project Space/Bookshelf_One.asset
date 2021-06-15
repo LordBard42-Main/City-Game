@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c832e4bf6c52a44b870f92a49ae495f, type: 3}
+  m_Name: Bookshelf_One
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  scene: 3
+  location: {x: 7, y: 13}
+  projectSpace: {fileID: 8131540505916326618, guid: 0b53e90a4b029494d84432adff96008e,
+    type: 3}
+  spaceID: 0
+  libraryProjects:
+  - {fileID: 11400000, guid: c644ae377f1e42d49a53fbea38b32fc7, type: 2}
+  - {fileID: 11400000, guid: 4c42f929eb58d804c9680b7dc4cd2995, type: 2}
+  - {fileID: 11400000, guid: 3903a640afeed3345badd4cf6c452d49, type: 2}

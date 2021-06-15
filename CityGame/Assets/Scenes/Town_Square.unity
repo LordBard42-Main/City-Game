@@ -10737,7 +10737,11 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: , ns: , asm: }
+      type: {class: LibraryProjectTicket, ns: , asm: Assembly-CSharp}
+      data:
+        progress: 0
+        projectID: 0
+        projectSpaceID: 0
 --- !u!114 &1961275424686841831
 MonoBehaviour:
   m_ObjectHideFlags: 0
