@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public enum ProjectSize_IDs { All, Small, Medium, Large}
+public enum ProjectSizes { All, Small, Medium, Large}
 
 public class CityProject : ScriptableObject
 {
+    [SerializeField]
+    [TabGroup("Project Data")]
+    [LabelWidth(100)]
+    protected Workspaces workspaceID;
+
+    [SerializeField]
+    [TabGroup("Project Data")]
+    [LabelWidth(100)]
+    protected CityProjects id;
 
     [SerializeField]
     [TabGroup("Project Data")]
     [LabelWidth(100)]
     [ReadOnly] 
-    protected ProjectSize_IDs projectSize;
+    protected ProjectSizes projectSize;
 
     [SerializeField]
     [TabGroup("Project Constraints")]

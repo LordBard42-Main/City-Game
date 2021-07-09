@@ -9,6 +9,6 @@ public class SmallLibraryProject : LibraryProject
 
     private void OnValidate()
     {
-        projectSize = ProjectSize_IDs.Small;
+        projectSize = ProjectSizes.Small;
     }
 }

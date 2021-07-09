@@ -27,6 +27,7 @@ public class EmployeeInformation : ISerialize
 
         isEmployed = tempClass.isEmployed;
         hasATicket = tempClass.hasATicket;
+        currentProject = tempClass.currentProject;
         
     }
 
@@ -51,11 +52,15 @@ public class ProjectTicketConverter : JsonConverter
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
-        return serializer.Deserialize(reader, typeof(CityProjectTicket));
+
+        Debug.Log(reader.Value);
+
+        return serializer.Deserialize(reader, typeof(LibraryProjectTicket));
     }
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        serializer.Serialize(writer, value, typeof(CityProjectTicket));
+        Debug.Log(value.GetType());
+        serializer.Serialize(writer, value, value.GetType());
     }
 }

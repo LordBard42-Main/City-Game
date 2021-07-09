@@ -8,6 +8,6 @@ public class LargeLibraryProject : LibraryProject
 
     private void OnValidate()
     {
-        projectSize = ProjectSize_IDs.Large;
+        projectSize = ProjectSizes.Large;
     }
 }

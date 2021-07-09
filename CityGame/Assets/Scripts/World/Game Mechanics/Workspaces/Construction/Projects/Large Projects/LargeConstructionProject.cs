@@ -10,7 +10,7 @@ public class LargeConstructionProject : ConstructionProject
     protected override void OnValidate()
     {
         base.OnValidate();
-        projectSize = ProjectSize_IDs.Large;
+        projectSize = ProjectSizes.Large;
     }
 
 }

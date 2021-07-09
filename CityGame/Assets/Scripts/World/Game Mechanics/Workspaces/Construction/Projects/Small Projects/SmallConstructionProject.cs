@@ -10,7 +10,7 @@ public class SmallConstructionProject : ConstructionProject
     protected override void OnValidate()
     {
         base.OnValidate();
-        projectSize = ProjectSize_IDs.Small;
+        projectSize = ProjectSizes.Small;
     }
 
 }

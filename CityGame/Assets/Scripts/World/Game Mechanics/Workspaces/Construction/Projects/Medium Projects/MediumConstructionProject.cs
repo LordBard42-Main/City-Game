@@ -10,6 +10,6 @@ public class MediumConstructionProject : ConstructionProject
     protected override void OnValidate()
     {
         base.OnValidate();
-        projectSize = ProjectSize_IDs.Medium;
+        projectSize = ProjectSizes.Medium;
     }
 }
